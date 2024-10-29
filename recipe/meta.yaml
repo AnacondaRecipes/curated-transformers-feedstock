@@ -1,0 +1,43 @@
+{% set name = "curated-transformers" %}
+{% set version = "0.1.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/curated_transformers-{{ version }}.tar.gz
+  sha256: 3348e639d9247bf222bcd90cefded05b37c5dc0e798b0af6957e37a4aafd0f1d
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python >=3.6
+    - pytorch >=1.12.0
+
+test:
+  imports:
+    - curated_transformers
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/explosion/curated-transformers
+  summary: A PyTorch library of transformer models and components
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - AddYourGitHubIdHere

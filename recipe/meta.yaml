@@ -10,9 +10,9 @@ source:
   sha256: 4671f03314df30efda2ec2b59bc7692ea34fcea44cb65382342c16684e8a2119
 
 build:
-  # To manage spaCy-related packages effectively, keep it noarch to avoid unnecessary complications.
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  skip: true  # [py<36]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
